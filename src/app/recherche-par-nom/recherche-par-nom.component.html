@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <h4>Recherche par nom du produit</h4>
+      <input type="text" class="form-control mb-3"
+             placeholder="Tapez le nom du produit..."
+             [(ngModel)]="nomRecherche">
+      <table class="table table-striped">
+        <thead>
+          <tr><th>Id</th><th>Nom</th><th>Prix</th><th>Catégorie</th></tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let produit of allProduits | searchFilter:nomRecherche">
+            <td>{{ produit.idProduit }}</td>
+            <td>{{ produit.nomProduit }}</td>
+            <td>{{ produit.prixProduit }}</td>
+            <td>{{ produit.categorie?.nomCat || produit.categorie?.idCat || '-' }}</td>
+          </tr>
+          <tr *ngIf="(allProduits | searchFilter:nomRecherche).length === 0">
+            <td colspan="4">Aucun produit trouvé !</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

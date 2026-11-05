@@ -1,0 +1,41 @@
+<div class="container">
+  <div class="card shadow mb-4">
+    <div class="card-body">
+      <h2>Nombre de produits : {{ produits.length }}</h2>
+      <p class="text-danger" *ngIf="message">{{ message }}</p>
+
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>N°</th>
+              <th>Id</th>
+              <th>Nom</th>
+              <th>Prix</th>
+              <th>Catégorie</th>
+              <th>Date création</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let produit of produits; let i = index">
+              <td>{{ i }}</td>
+              <td>{{ produit.idProduit }}</td>
+              <td>{{ produit.nomProduit }}</td>
+              <td>{{ produit.prixProduit }}</td>
+              <td>{{ produit.categorie?.nomCat || produit.categorie?.idCat || '-' }}</td>
+              <td>{{ produit.dateCreation | date:'dd/MM/yyyy' }}</td>
+              <td>
+                <button class="btn btn-danger me-2" (click)="supprimerProduit(produit)">Supprimer</button>
+                <a class="btn btn-success" [routerLink]="['/updateProduit', produit.idProduit]">Modifier</a>
+              </td>
+            </tr>
+            <tr *ngIf="produits.length === 0">
+              <td colspan="7" class="text-center">Aucun produit trouvé !</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

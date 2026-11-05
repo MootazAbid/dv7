@@ -1,0 +1,33 @@
+<div class="container">
+  <h2>Ajouter un produit :</h2>
+  <form #f="ngForm" (ngSubmit)="addProduit()">
+    <div class="mb-3 col-md-5">
+      <label>Nom du produit</label>
+      <input type="text" [(ngModel)]="newProduit.nomProduit" name="nomProduit"
+             class="form-control" required placeholder="Ex : Ballon">
+    </div>
+
+    <div class="mb-3 col-md-5">
+      <label>Prix du produit</label>
+      <input type="number" min="0" step="0.01" [(ngModel)]="newProduit.prixProduit"
+             name="prixProduit" class="form-control" required>
+    </div>
+
+    <div class="mb-3 col-md-5">
+      <label>Identifiant de catégorie</label>
+      <input type="number" min="1" [(ngModel)]="categorieId"
+             name="categorieId" class="form-control"
+             placeholder="Ex : 1">
+      <small class="text-muted">Saisissez un ID de catégorie existant dans la base.</small>
+    </div>
+
+    <div class="mb-3 col-md-5">
+      <label>Date de création</label>
+      <input type="date" [(ngModel)]="newProduit.dateCreation"
+             name="dateCreation" class="form-control">
+    </div>
+
+    <button type="submit" [disabled]="f.invalid" class="btn btn-success">Ajouter</button>
+    <p class="text-danger mt-3">{{ message }}</p>
+  </form>
+</div>
